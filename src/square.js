@@ -79,7 +79,8 @@ Square.prototype.exchangeRow = function(index , step) {
   var shape = this.data[index];
   var len = this.shapes[shape.shape];
 
-  var px = shape.x + len.x;
+  var px = shape.x + (step === 1 ? len.x : step);
+  px = Math.max(Math.min(px , this.x - 1) , 0);
   for ( var i = shape.y ; i < shape.y + len.y ; i++ ){
     if (this.matrix[px][i] !== this.defVal ){
       return false;
@@ -87,7 +88,7 @@ Square.prototype.exchangeRow = function(index , step) {
   }
   for ( var i = shape.y ; i < shape.y + len.y ; i++ ){
     this.matrix[px][i] = shape.value;
-    this.matrix[shape.x][i] = this.defVal;
+    this.matrix[Math.max(Math.min(shape.x + (step === 1 ? 0 : len.x + step) , this.x - 1) , 0)][i] = this.defVal;
   }
   this.data[index].x = shape.x + step;
   return true;
@@ -102,7 +103,9 @@ Square.prototype.exchangeCol = function(index , step) {
   var shape = this.data[index];
   var len = this.shapes[shape.shape];
 
-  var py = shape.y + len.y;
+  var py = shape.y + (step === 1 ? len.y : step);
+
+  py = Math.max(Math.min(py , this.y - 1) , 0);
   for ( var i = shape.x ; i < shape.x + len.x ; i++ ){
     if (this.matrix[i][py] !== this.defVal ){
       return false;
@@ -110,9 +113,10 @@ Square.prototype.exchangeCol = function(index , step) {
   }
   for ( var i = shape.x ; i < shape.x + len.x ; i++ ){
     this.matrix[i][py] = shape.value;
-    this.matrix[i][shape.y] = this.defVal;  
+    this.matrix[i][Math.max(Math.min(shape.y + (step === 1 ? 0 : len.y + step) , this.y - 1) , 0)] = this.defVal;  
   }
   this.data[index].y = shape.y + step;
+  return true;
 };
 /**
  * [move 移动色块]
@@ -150,6 +154,5 @@ Square.prototype.print = function(){
     console.log(str +' =>' + i);
   }
 };
-
 
 module.exports = Square;
