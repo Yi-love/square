@@ -150,3 +150,6 @@ Square.prototype.print = function(){
     console.log(str +' =>' + i);
   }
 };
+
+
+module.exports = Square;
