@@ -7,69 +7,82 @@
 ```js
 var Square = require('square');
 
+// options one
 var options = {
-  x: 5,   //高
-  y: 4,  //长
-  shapes: [{  //类型
-      x:1,y:1 //高 ，宽
-    },{
-      x:1,y:2
-    },{
-      x:2,y:2
-    },{
-      x:2,y:1
-    }],
+  h: 5,   //高
+  w: 4,  //长
   data: [{ //数据
-    x: 0,//坐标
-    y: 0,
-    shape: 0,//类型
+    px: 0,//坐标
+    py: 0,
+    h:1, //高
+    w:1,//宽
     value: 0,//保存的唯一值。默认为 index
   },{
-    x: 0,
-    y: 1,
-    shape: 1,
+    px: 0,
+    py: 1,
+    w:2,
+    h:1,
     value: 1
   },{
-    x: 0, 
-    y: 3,
-    shape: 0,  
+    px: 0, 
+    py: 3,
+    h: 1,
+    w: 1, 
     value: 2 
   },{
-    x: 1,
-    y: 0,
-    shape: 3,
+    px: 1,
+    py: 0,
+    w:1,
+    h:2,
     value: 3
   },{
-    x: 1,
-    y: 1,
-    shape: 2,
+    px: 1,
+    py: 1,
+    w:2,
+    h:2,
     value: 4
   },{
-    x: 1,
-    y: 3,
-    shape: 3,
+    px: 1,
+    py: 3,
+    w:1,
+    h: 2,
     value: 5
   },{
-    x: 3,
-    y: 0,
-    shape: 3,
+    px: 3,
+    py: 0,
+    w: 1,
+    h: 2,
     value: 6
   },{
-    x: 3,
-    y: 1,
-    shape: 0,
+    px: 3,
+    py: 1,
+    w: 1,
+    h: 1,
     value: 7
   },{
-    x: 3,
-    y: 2,
-    shape: 0,
+    px: 3,
+    py: 2,
+    w:1,
+    h:1,
     value: 8
   },{
-    x: 3,
-    y: 3,
-    shape: 3,
+    px: 3,
+    py: 3,
+    w: 1,
+    h: 2,
     value: 9
   }]
+};
+
+// options two
+var options = {
+  w: 4,
+  h: 5,
+  matrix: [ [0 , 1 , 1 , 2],
+            [3 , 4 , 4 , 5],
+            [3 , 4 , 4 , 5],
+            [6 , 7 , 8 , 9],
+            [6 ,-1 ,-1 , 9]]
 };
 
 var square = new Square(options);
